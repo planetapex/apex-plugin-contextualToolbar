@@ -13,7 +13,7 @@ Your support means a lot.
 
 ## Changelog
 
-### 1.1 - Afrer Refresh Bug Fixed
+### 1.1 - After Refresh Bug Fixed
 ### 1.0 - Initial Release
 
 ## Install
