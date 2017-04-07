@@ -7,7 +7,7 @@ END pkg_toolbar;
 /
 CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
 
-  g_default_separator constant varchar2(1) := ';';
+   g_default_separator constant varchar2(1) := ';';
 
   g_max_pl_varchar2_def varchar2(32767);
 
@@ -122,10 +122,10 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     -- DA Plugin Attributes 
     atr_src_type p_dynamic_action.attribute_01%type := p_dynamic_action.attribute_01;
     atr_static_vals p_dynamic_action.attribute_02%type := p_dynamic_action.attribute_02;
-    atr_03 p_dynamic_action.attribute_03%type := p_dynamic_action.attribute_03;
+    --atr_03 p_dynamic_action.attribute_03%type := p_dynamic_action.attribute_03;
     atr_list p_dynamic_action.attribute_04%type := p_dynamic_action.attribute_04;
     atr_sql_qry p_dynamic_action.attribute_05%type := p_dynamic_action.attribute_05;
-    atr_06 p_dynamic_action.attribute_06%type := p_dynamic_action.attribute_06;
+    --atr_06 p_dynamic_action.attribute_06%type := p_dynamic_action.attribute_06;
     atr_aff_el_style p_dynamic_action.attribute_07%type := lower(p_dynamic_action.attribute_07);
     atr_style p_dynamic_action.attribute_08%type := lower(p_dynamic_action.attribute_08);
     atr_position p_dynamic_action.attribute_09%type := p_dynamic_action.attribute_09;
@@ -133,28 +133,24 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     atr_animation p_dynamic_action.attribute_11%type := p_dynamic_action.attribute_11;
     atr_event p_dynamic_action.attribute_12%type := p_dynamic_action.attribute_12;
     atr_hideOnClick p_dynamic_action.attribute_13%type := p_dynamic_action.attribute_13;
-    atr_14 p_dynamic_action.attribute_14%type := p_dynamic_action.attribute_14;
+   -- atr_14 p_dynamic_action.attribute_14%type := p_dynamic_action.attribute_14;
     atr_actionEvent p_dynamic_action.attribute_15%type := p_dynamic_action.attribute_15;
     -- Return 
     l_result apex_plugin.t_dynamic_action_render_result;
     -- Other variables 
-    v_options clob;
     l_html varchar2(32767);
     l_src_id varchar2(1000) := 'toolbar-options_' ||
                                round(dbms_random.value(1, 100000));
     l_js_code varchar2(32767);
     ---Source Type
     ----------------------
-    l_list_values varchar2(32767);
     l_stat_lst_varr wwv_flow_global.vc_arr2;
-    l_url_varr wwv_flow_global.vc_arr2;
+   
     ---STATIC
     l_value varchar2(32767);
-    l_display varchar2(32767);
     l_icon varchar2(32767);
     l_title varchar2(32767);
     --LIST QUERY
-    l_list clob;
     l_query clob;
     l_lst_type varchar2(50);
     l_lov apex_plugin_util.t_column_value_list;
@@ -432,9 +428,10 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     l_js_code := l_elm_code || '$(''' || l_elm_selector || ''').toolbar({' ||
                  l_js_code || '});';
     apex_javascript.add_onload_code(p_code => l_js_code);
-    l_result.javascript_function := 'null';
+    l_result.javascript_function :='function (){' || l_js_code || '}';
     RETURN l_result;
   END f_render_tlbr;
+
 
 END pkg_toolbar;
 /

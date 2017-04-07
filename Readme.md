@@ -13,6 +13,7 @@ Your support means a lot.
 
 ## Changelog
 
+### 1.1 - Afrer Refresh Bug Fixed
 ### 1.0 - Initial Release
 
 ## Install
@@ -51,6 +52,31 @@ Your support means a lot.
 - Toolbar Item Events including: click, double click, hover, mouse button pressed, mouse button released.
 
 ## Plugin Settings
+
+### How to Attach Toolbar to Item
+
+1) Create a Dynamic Action 
+- [X] **Event**: Page Load
+- [X] **Action**: Contextual Toolbar.
+- [X] **Affected Element**:Select 
+  - [X] Item
+  - [X] Button
+  - [X] Region
+  - [X] jQuery Selector
+  - [X] Javascript expression
+
+OR 
+
+2) Create a Dynamic Action 
+- [X] **Event**: After Refresh of Report/Region
+- [X] **Action**: Contextual Toolbar.
+- [X] **Affected Element**:Select 
+  - [X] Item
+  - [X] Button
+  - [X] Region
+  - [X] jQuery Selector
+  - [X] Javascript expression
+
 
 ### Toolbar Source
 
@@ -94,7 +120,7 @@ Union All
 Select 'fa-car', 'f?p=&APP_ID.:2:&SESSION.', 'Page 2'
   from dual
 Union All
-Select 'fa-cog', 'alert("ola")', 'Javascript Function'
+Select 'fa-cog', 'alert("hola")', 'Javascript Function'
   from dual
 ```
 
@@ -227,3 +253,14 @@ The toolbar will be closed when clicking anywhere off the toolbar by setting the
 
 > Notes
 The element that triggers the toolbar will gain the class .pressed when the toolbar is visible.
+
+## Authors/Contributors
+
+
+* **M Yasir Ali Shah** - *Initial work* - [PlanetApex](https://github.com/planetapex/)
+* **Ivan sabolic** - *Contributor* - [isabolic](https://github.com/isabolic/)
+
+## License
+
+[MIT License](https://github.com/planetapex/apex-plugin-contextualToolbar/blob/master/LICENSE)
+
