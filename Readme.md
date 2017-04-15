@@ -13,6 +13,7 @@ Your support means a lot.
 
 ## Changelog
 
+### 1.2 - Wait For Result Option added
 ### 1.1 - After Refresh Bug Fixed
 ### 1.0 - Initial Release
 
