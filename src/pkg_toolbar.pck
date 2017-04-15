@@ -118,8 +118,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     RETURN apex_plugin.t_dynamic_action_render_result AS
     V_APP_ID APEX_APPLICATIONS.APPLICATION_ID%TYPE := apex_application.g_flow_id;
     V_PAGE_ID APEX_APPLICATION_PAGES.PAGE_ID%TYPE := apex_application.g_flow_step_id;
-    -- Application Plugin Attributes 
-    -- DA Plugin Attributes 
+    -- Application Plugin Attributes
+    -- DA Plugin Attributes
     atr_src_type p_dynamic_action.attribute_01%type := p_dynamic_action.attribute_01;
     atr_static_vals p_dynamic_action.attribute_02%type := p_dynamic_action.attribute_02;
     --atr_03 p_dynamic_action.attribute_03%type := p_dynamic_action.attribute_03;
@@ -135,9 +135,9 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     atr_hideOnClick p_dynamic_action.attribute_13%type := p_dynamic_action.attribute_13;
    -- atr_14 p_dynamic_action.attribute_14%type := p_dynamic_action.attribute_14;
     atr_actionEvent p_dynamic_action.attribute_15%type := p_dynamic_action.attribute_15;
-    -- Return 
+    -- Return
     l_result apex_plugin.t_dynamic_action_render_result;
-    -- Other variables 
+    -- Other variables
     l_html varchar2(32767);
     l_src_id varchar2(1000) := 'toolbar-options_' ||
                                round(dbms_random.value(1, 100000));
@@ -145,7 +145,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     ---Source Type
     ----------------------
     l_stat_lst_varr wwv_flow_global.vc_arr2;
-   
+
     ---STATIC
     l_value varchar2(32767);
     l_icon varchar2(32767);
@@ -163,15 +163,15 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     ----------------------------------------
     l_elm_selector varchar2(1000);
     l_elm_code varchar2(1000);
-    -- Convert Y/N to True/False (text) 
-    -- Default to true 
+    -- Convert Y/N to True/False (text)
+    -- Default to true
     FUNCTION f_yn_2_truefalse_str(p_val IN VARCHAR2) RETURN VARCHAR2 AS
     BEGIN
       RETURN case NVL(p_val, 'N') when 'Y' then 'true' else 'false' end;
     END f_yn_2_truefalse_str;
-  
+
   BEGIN
-    -- Debug information (if app is being run in debug mode) 
+    -- Debug information (if app is being run in debug mode)
     IF apex_application.g_debug THEN
       apex_plugin_util.debug_dynamic_action(p_plugin => p_plugin, p_dynamic_action => p_dynamic_action);
     END IF;
@@ -428,7 +428,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_toolbar IS
     l_js_code := l_elm_code || '$(''' || l_elm_selector || ''').toolbar({' ||
                  l_js_code || '});';
     apex_javascript.add_onload_code(p_code => l_js_code);
-    l_result.javascript_function :='function (){' || l_js_code || '}';
+    l_result.javascript_function :='function (){ ' || l_js_code || '; debugger; if(this.action.waitForResult == true){apex.da.resume( this.resumeCallback, false );}}';
     RETURN l_result;
   END f_render_tlbr;
 

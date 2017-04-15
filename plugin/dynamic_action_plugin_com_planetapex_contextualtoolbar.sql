@@ -456,7 +456,7 @@ wwv_flow_api.create_plugin(
 '    l_js_code := l_elm_code || ''$('''''' || l_elm_selector || '''''').toolbar({'' ||',
 '                 l_js_code || ''});'';',
 '    apex_javascript.add_onload_code(p_code => l_js_code);',
-'    l_result.javascript_function :=''function (){ '' || l_js_code || ''; apex.da.resume( this.resumeCallback, false );}'';',
+'    l_result.javascript_function :=''function (){ '' || l_js_code || ''; if(this.action.waitForResult == true){apex.da.resume( this.resumeCallback, false );}}'';',
 '    RETURN l_result;',
 '  END f_render_tlbr;'))
 ,p_render_function=>'f_render_tlbr'
